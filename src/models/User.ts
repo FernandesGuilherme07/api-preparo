@@ -19,7 +19,7 @@ const userSchema = new mongoose.Schema(
     },
     brith: {
       type: String,
-      required: true,
+      required: false,
     },
     itsACompany: {
       type: Boolean,
