@@ -6,11 +6,13 @@ import {
   removeUser,
   updateUser,
 } from "../controllers/UserController";
+import { UserValidation } from "../middlewares/userValidatorMiddleware";
+import { validate } from "../middlewares/validationMiddleware";
 
 const UserRoutes = Router();
 
-export default UserRoutes.get("/users", getAllUsers)
-  .get("/user/:id", findUSerById)
-  .post("/user", createUser)
-  .put("/user/:id", updateUser)
-  .delete("/user/:id", removeUser);
+export default UserRoutes.post("/user", UserValidation(), validate, createUser)
+  .get("/users", validate, getAllUsers)
+  .get("/user/:id", validate, findUSerById)
+  .put("/user/:id", UserValidation(), validate, updateUser)
+  .delete("/user/:id", validate, removeUser);

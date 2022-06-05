@@ -18,7 +18,7 @@ export async function createUser(req: Request, res: Response) {
 
 export async function findUSerById(req: Request, res: Response) {
   try {
-    const id = req.params._id;
+    const id = req.params.id;
     const user = await User.findById(id);
 
     if (!user) {
@@ -28,6 +28,7 @@ export async function findUSerById(req: Request, res: Response) {
     return res.status(200).json(user);
   } catch (e: any) {
     Logger.info(`Error: ${e.message}`);
+    return res.json({ error: e });
   }
 }
 
@@ -42,7 +43,7 @@ export async function getAllUsers(req: Request, res: Response) {
 
 export async function removeUser(req: Request, res: Response) {
   try {
-    const id = req.params._id;
+    const id = req.params.id;
     const user = await User.findById(id);
 
     if (!user) {
@@ -61,7 +62,7 @@ export async function removeUser(req: Request, res: Response) {
 
 export async function updateUser(req: Request, res: Response) {
   try {
-    const id = req.params._id;
+    const id = req.params.id;
     const data = req.body;
     const user = await User.findById(id);
 
