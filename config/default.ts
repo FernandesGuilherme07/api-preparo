@@ -7,9 +7,10 @@ const {
   APP_PORT,
   APP_URL,
   ENVIRONMENT,
-  // DB_ATLAS
+  DB_ATLAS,
 } = process.env;
 
+// eslint-disable-next-line no-unused-vars
 const prodOrDev: String =
   ENVIRONMENT === "development"
     ? `mongodb://${APP_URL}:${DB_PORT}/${DB_DATABASE}`
@@ -17,10 +18,10 @@ const prodOrDev: String =
 
 export default {
   // with MongoDB atlas:
-  // dbUri: DB_ATLAS
+  dbUri: DB_ATLAS,
 
   // with Docker-compose:
-  dbUri: prodOrDev,
+  // dbUri: prodOrDev,
 
   // Development
   env: ENVIRONMENT,
