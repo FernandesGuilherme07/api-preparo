@@ -19,7 +19,6 @@ export default async function userExists(
     return next();
   } catch (error) {
     Logger.error({ error: "user does not exist." });
-
     return res.status(404).json({ error: "user does not exist." });
   }
 }

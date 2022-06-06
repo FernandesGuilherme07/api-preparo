@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from "express";
+import Logger from "../../config/logger";
 
 // Model
 import Resume from "../models/Resume";
@@ -17,6 +18,7 @@ export default async function ResumeExists(
     }
     return next();
   } catch (error) {
+    Logger.error(`Error: ${error}`);
     return res.status(404).json({ error: "resume does not exist." });
   }
 }
