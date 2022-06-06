@@ -21,14 +21,9 @@ export default OpportunitiesRoutes.post(
   validate,
   createOpportunitie
 )
+  .get("/allopportunities/", validate, getAllOpportunitie)
   .get(
-    "/user/:user_Id/opportunitie/",
-    UserIdIsValid,
-    validate,
-    getAllOpportunitie
-  )
-  .get(
-    "/user/:user_Id/opportunitieUserId/",
+    "/user/:user_Id/opportunities/",
     UserIdIsValid,
     validate,
     getAllOpportunitieByUserId
