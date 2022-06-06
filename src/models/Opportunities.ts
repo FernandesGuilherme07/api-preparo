@@ -2,9 +2,9 @@ import mongoose from "mongoose";
 
 const opportunitiesSchema = new mongoose.Schema(
   {
-    userId: {
-      type: String,
-      required: true,
+    user_Id: {
+      type: mongoose.Types.ObjectId,
+      ref: "User",
     },
     name: {
       type: String,
@@ -24,10 +24,12 @@ const opportunitiesSchema = new mongoose.Schema(
     },
     benefits: {
       type: String,
-      required: true,
     },
-    numberOfCndidates: {
-      type: String,
+    Candidates: {
+      type: Array,
+    },
+    numberOfCandidates: {
+      type: Number,
       required: true,
     },
   },
@@ -36,4 +38,7 @@ const opportunitiesSchema = new mongoose.Schema(
   }
 );
 
-export default mongoose.model("Opportunities", opportunitiesSchema);
+export const OpportunitiesModel = mongoose.model(
+  "Opportunities",
+  opportunitiesSchema
+);
