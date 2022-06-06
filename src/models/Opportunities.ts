@@ -26,6 +26,10 @@ const opportunitiesSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    numberOfCndidates: {
+      type: String,
+      required: true,
+    },
   },
   {
     timestamps: true,

@@ -1,4 +1,6 @@
 import { Request, Response } from "express";
+import { createPasswordHash } from "../services/bcrypt";
+import { IUser } from "../interfaces/User";
 
 // Model
 import User from "../models/User";
@@ -8,8 +10,15 @@ import Logger from "../../config/logger";
 
 export async function createUser(req: Request, res: Response) {
   try {
-    const data = req.body;
-    const user = await User.create(data);
+    const { name, email, password, brith, itsACompany }: IUser = req.body;
+    const encryptedPassword = await createPasswordHash(password);
+    const user = await User.create({
+      name,
+      email,
+      password: encryptedPassword,
+      brith,
+      itsACompany,
+    });
     return res.status(201).json(user);
   } catch (e: any) {
     Logger.info(`Error: ${e.message}`);
@@ -63,16 +72,25 @@ export async function removeUser(req: Request, res: Response) {
 export async function updateUser(req: Request, res: Response) {
   try {
     const id = req.params.id;
-    const data = req.body;
-    const user = await User.findById(id);
+    const { name, email, password, brith, itsACompany }: IUser = req.body;
+    const encryptedPassword = await createPasswordHash(password);
+    const user = {
+      name,
+      email,
+      password: encryptedPassword,
+      brith,
+      itsACompany,
+    };
 
-    if (!user) {
+    const existsUser = await User.findById(id);
+
+    if (!existsUser) {
       return res.status(404).json({ error: "user does not exist." });
     }
 
-    await User.updateOne({ _id: id }, data);
+    await User.updateOne({ _id: id }, existsUser);
 
-    return res.status(200).json(data);
+    return res.status(200).json(user);
   } catch (e: any) {
     Logger.info(`Error: ${e.message}`);
   }
