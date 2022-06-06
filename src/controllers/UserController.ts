@@ -3,7 +3,7 @@ import { createPasswordHash } from "../services/bcrypt";
 import { IUser } from "../interfaces/User";
 
 // Model
-import User from "../models/User";
+import { UserModel } from "../models/User";
 
 // Logger
 import Logger from "../../config/logger";
@@ -12,7 +12,7 @@ export async function createUser(req: Request, res: Response) {
   try {
     const { name, email, password, brith, itsACompany }: IUser = req.body;
     const encryptedPassword = await createPasswordHash(password);
-    const user = await User.create({
+    const user = await UserModel.create({
       name,
       email,
       password: encryptedPassword,
@@ -21,51 +21,54 @@ export async function createUser(req: Request, res: Response) {
     });
     return res.status(201).json(user);
   } catch (e: any) {
-    Logger.info(`Error: ${e.message}`);
+    Logger.error(`Error: ${e.message}`);
+    return res.status(500).json({ error: "internal error." });
   }
 }
 
 export async function findUSerById(req: Request, res: Response) {
   try {
     const id = req.params.id;
-    const user = await User.findById(id);
+    const user = await UserModel.findById(id);
 
     if (!user) {
+      Logger.error({ error: "user does not exist." });
       return res.status(404).json({ error: "user does not exist." });
     }
 
     return res.status(200).json(user);
   } catch (e: any) {
-    Logger.info(`Error: ${e.message}`);
-    return res.json({ error: e });
+    Logger.error(`Error: ${e.message}`);
+    return res.status(404).json({ error: "user does not exist." });
   }
 }
 
 export async function getAllUsers(req: Request, res: Response) {
   try {
-    const user = await User.find();
+    const user = await UserModel.find();
     return res.status(200).json(user);
   } catch (e: any) {
-    Logger.info(`Error: ${e.message}`);
+    Logger.error(`Error: ${e.message}`);
+    return res.status(404).json({ error: "error internal." });
   }
 }
 
 export async function removeUser(req: Request, res: Response) {
   try {
     const id = req.params.id;
-    const user = await User.findById(id);
+    const user = await UserModel.findById(id);
 
     if (!user) {
+      Logger.error({ error: "user does not exist." });
       return res.status(404).json({ error: "user does not exist." });
     }
-
-    console.log(user);
 
     await user.delete();
 
     return res.status(201).json({ msg: "user successfully removed!" });
   } catch (e: any) {
-    Logger.info(`Error: ${e.message}`);
+    Logger.error(`Error: ${e.message}`);
+    return res.status(404).json({ error: "user does not exist." });
   }
 }
 
@@ -82,16 +85,17 @@ export async function updateUser(req: Request, res: Response) {
       itsACompany,
     };
 
-    const existsUser = await User.findById(id);
+    const existsUser = await UserModel.findById(id);
 
     if (!existsUser) {
       return res.status(404).json({ error: "user does not exist." });
     }
 
-    await User.updateOne({ _id: id }, existsUser);
+    await UserModel.updateOne({ _id: id }, existsUser);
 
     return res.status(200).json(user);
   } catch (e: any) {
-    Logger.info(`Error: ${e.message}`);
+    Logger.error(`Error: ${e.message}`);
+    return res.status(404).json({ error: "user does not exist." });
   }
 }

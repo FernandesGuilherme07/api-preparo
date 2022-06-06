@@ -2,9 +2,9 @@ import mongoose from "mongoose";
 
 const ResumeSchema = new mongoose.Schema(
   {
-    userId: {
-      type: String,
-      required: true,
+    user_Id: {
+      type: mongoose.Types.ObjectId,
+      ref: "User",
     },
     fullName: {
       type: String,
@@ -13,12 +13,10 @@ const ResumeSchema = new mongoose.Schema(
     email: {
       type: String,
       required: true,
-      index: {
-        unique: true,
-      },
     },
     address: {
       type: {
+        cep: String,
         country: String,
         state: String,
         city: String,
@@ -32,24 +30,24 @@ const ResumeSchema = new mongoose.Schema(
       required: true,
     },
     brith: {
-      type: Date,
+      type: String,
       required: true,
     },
     about: {
       type: String,
       required: true,
     },
-    Training: {
+    training: {
       type: [
         {
           name: String,
           institution: String,
           time: String,
-          Descriptin: String,
+          Description: String,
         },
       ],
     },
-    Courses: {
+    courses: {
       type: [
         {
           title: String,
@@ -62,8 +60,8 @@ const ResumeSchema = new mongoose.Schema(
       type: [
         {
           title: String,
-          dateYouEntered: Date,
-          dateYouLeft: Date,
+          dateYouEntered: String,
+          dateYouLeft: String,
           description: String,
         },
       ],
