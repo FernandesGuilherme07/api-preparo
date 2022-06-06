@@ -4,7 +4,7 @@ const ResumeSchema = new mongoose.Schema(
   {
     user_Id: {
       type: mongoose.Types.ObjectId,
-      ref: "User",
+      ref: "UserModel",
     },
     fullName: {
       type: String,

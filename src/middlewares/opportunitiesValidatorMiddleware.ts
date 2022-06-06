@@ -8,6 +8,5 @@ export const OppornutiesValidation = () => {
     body("responsibilities")
       .isString()
       .withMessage("responsibilities is mandatory."),
-    body("itsACompany").isBoolean().withMessage("itsACompany is mandatory."),
   ];
 };

@@ -28,13 +28,7 @@ export async function createUser(req: Request, res: Response) {
 
 export async function findUSerById(req: Request, res: Response) {
   try {
-    const id = req.params.id;
-    const user = await UserModel.findById(id);
-
-    if (!user) {
-      Logger.error({ error: "user does not exist." });
-      return res.status(404).json({ error: "user does not exist." });
-    }
+    const user = await UserModel.findById(req.params.id);
 
     return res.status(200).json(user);
   } catch (e: any) {
@@ -55,14 +49,7 @@ export async function getAllUsers(req: Request, res: Response) {
 
 export async function removeUser(req: Request, res: Response) {
   try {
-    const id = req.params.id;
-    const user = await UserModel.findById(id);
-
-    if (!user) {
-      Logger.error({ error: "user does not exist." });
-      return res.status(404).json({ error: "user does not exist." });
-    }
-
+    const user = await UserModel.findById(req.params.id);
     await user.delete();
 
     return res.status(201).json({ msg: "user successfully removed!" });
@@ -86,10 +73,6 @@ export async function updateUser(req: Request, res: Response) {
     };
 
     const existsUser = await UserModel.findById(id);
-
-    if (!existsUser) {
-      return res.status(404).json({ error: "user does not exist." });
-    }
 
     await UserModel.updateOne({ _id: id }, existsUser);
 

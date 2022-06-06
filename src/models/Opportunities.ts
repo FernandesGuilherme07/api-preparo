@@ -4,7 +4,7 @@ const opportunitiesSchema = new mongoose.Schema(
   {
     user_Id: {
       type: mongoose.Types.ObjectId,
-      ref: "User",
+      ref: "UserModel",
     },
     name: {
       type: String,
@@ -25,7 +25,7 @@ const opportunitiesSchema = new mongoose.Schema(
     benefits: {
       type: String,
     },
-    Candidates: {
+    candidates: {
       type: Array,
     },
     numberOfCandidates: {
