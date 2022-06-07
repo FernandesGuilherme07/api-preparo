@@ -2,7 +2,7 @@ import { Router } from "express";
 import {
   createResume,
   findResumeById,
-  getAllResume,
+  getAllResumes,
   removeResume,
   updateResume,
 } from "../controllers/ResumeController";
@@ -20,7 +20,7 @@ export default ResumeRoutes.post(
   validate,
   createResume
 )
-  .get("/user/:user_Id/resume/", UserIdIsValid, validate, getAllResume)
+  .get("/user/:user_Id/resume/", UserIdIsValid, validate, getAllResumes)
   .get(
     "/user/:user_Id/resume/:id",
     UserIdIsValid,
