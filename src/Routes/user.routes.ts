@@ -6,8 +6,8 @@ import {
   removeUser,
   updateUser,
 } from "../controllers/UserController";
-import userExists from "../middlewares/userExisitsMiddleware";
-import { UserValidation } from "../middlewares/userValidatorMiddleware";
+import userExists from "../middlewares/user/userExisitsMiddleware";
+import { UserValidation } from "../middlewares/user/userValidatorMiddleware";
 import { validate } from "../middlewares/validationMiddleware";
 
 const UserRoutes = Router();

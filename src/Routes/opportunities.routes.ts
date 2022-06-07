@@ -7,9 +7,9 @@ import {
   removeOpportunitie,
   updateOpportunitie,
 } from "../controllers/OpportunitiesController";
-import OpportunitiesExists from "../middlewares/opportunitiesExistsMiddleware";
-import { OppornutiesValidation } from "../middlewares/opportunitiesValidatorMiddleware";
-import UserIdIsValid from "../middlewares/userIdIsValidMiddleware";
+import OpportunitiesExists from "../middlewares/opportunities/opportunitiesExistsMiddleware";
+import { OppornutiesValidation } from "../middlewares/opportunities/opportunitiesValidatorMiddleware";
+import UserIdIsValid from "../middlewares/user/userIdIsValidMiddleware";
 import { validate } from "../middlewares/validationMiddleware";
 
 const OpportunitiesRoutes = Router();

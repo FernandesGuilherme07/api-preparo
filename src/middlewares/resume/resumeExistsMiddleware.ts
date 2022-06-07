@@ -1,8 +1,8 @@
 import { NextFunction, Request, Response } from "express";
-import Logger from "../../config/logger";
+import Logger from "../../../config/logger";
 
 // Model
-import Resume from "../models/Resume";
+import Resume from "../../models/Resume";
 
 export default async function ResumeExists(
   req: Request,

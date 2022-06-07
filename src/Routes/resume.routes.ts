@@ -6,9 +6,9 @@ import {
   removeResume,
   updateResume,
 } from "../controllers/ResumeController";
-import ResumeExists from "../middlewares/resumeExistsMiddleware";
-import { ResumeValidation } from "../middlewares/resumeValidatorMiddleware";
-import UserIdIsValid from "../middlewares/userIdIsValidMiddleware";
+import ResumeExists from "../middlewares/resume/resumeExistsMiddleware";
+import { ResumeValidation } from "../middlewares/resume/resumeValidatorMiddleware";
+import UserIdIsValid from "../middlewares/user/userIdIsValidMiddleware";
 import { validate } from "../middlewares/validationMiddleware";
 
 const ResumeRoutes = Router();

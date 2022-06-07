@@ -1,5 +1,5 @@
 import { body } from "express-validator";
-import { IAddress } from "../interfaces/Address";
+import { IAddress } from "../../interfaces/Address";
 
 export const ResumeValidation = () => {
   return [
