@@ -8,6 +8,7 @@ import resumeRoutes from "./Routes/resume.routes";
 import opportunitiesRoutes from "./Routes/opportunities.routes";
 import companiesRoutes from "./Routes/companies.routes";
 import physicalPersonRoutes from "./Routes/physicalPerson.routes";
+import candidacyRoutes from "./Routes/candidacy.routes";
 
 const { APP_VERSION } = process.env;
 
@@ -18,6 +19,7 @@ app.use(`${APP_VERSION}`, resumeRoutes);
 app.use(`${APP_VERSION}`, opportunitiesRoutes);
 app.use(`${APP_VERSION}`, physicalPersonRoutes);
 app.use(`${APP_VERSION}`, companiesRoutes);
+app.use(`${APP_VERSION}`, candidacyRoutes);
 
 app.use(morganMiddleware);
 
