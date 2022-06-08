@@ -4,15 +4,15 @@ const ResumeSchema = new mongoose.Schema(
   {
     user_Id: {
       type: mongoose.Types.ObjectId,
-      ref: "UserModel",
+      ref: "user",
     },
     fullName: {
       type: String,
       required: true,
     },
     email: {
+      unique: false,
       type: String,
-      required: true,
     },
     address: {
       type: {

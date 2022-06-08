@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const CandidacySchema = new mongoose.Schema(
   {
-    opportunities_Id: {
+    opportunities_id: {
       type: mongoose.Types.ObjectId,
       ref: "OpportunitiesModel",
     },

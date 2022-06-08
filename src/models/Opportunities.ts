@@ -2,9 +2,13 @@ import mongoose from "mongoose";
 
 const opportunitiesSchema = new mongoose.Schema(
   {
-    user_Id: {
+    user: {
       type: mongoose.Types.ObjectId,
-      ref: "UserModel",
+      ref: "user",
+    },
+    user_id: {
+      type: String,
+      required: true,
     },
     name: {
       type: String,
@@ -25,12 +29,26 @@ const opportunitiesSchema = new mongoose.Schema(
     benefits: {
       type: String,
     },
-    candidates: {
-      type: Array,
-    },
+    candidates: [
+      {
+        nameCandidate: {
+          type: String,
+          required: true,
+        },
+        emailCandidate: {
+          type: String,
+          required: true,
+        },
+        resume: {
+          type: String,
+          required: true,
+        },
+        required: false,
+      },
+    ],
     numberOfCandidates: {
       type: Number,
-      required: true,
+      default: 0,
     },
   },
   {

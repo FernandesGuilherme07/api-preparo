@@ -1,10 +1,19 @@
+/* eslint-disable prefer-promise-reject-errors */
 import { body } from "express-validator";
 import { IAddress } from "../../interfaces/Address";
+import Resume from "../../models/Resume";
 
 export const ResumeValidation = () => {
   return [
     body("fullName").isString().withMessage("fullName is mandatory."),
-    body("email").isString().withMessage("email is mandatory."),
+    body("email")
+      .isEmail()
+      .withMessage("email is mandatory.")
+      .custom((value) => {
+        return Resume.findOne({ email: value }).then(() => {
+          return Promise.reject("email exists.");
+        });
+      }),
     body("address")
       .isObject()
       .withMessage("address is mandatory.")

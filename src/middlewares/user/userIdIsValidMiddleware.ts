@@ -10,6 +10,7 @@ export default async function UserIdIsValid(
 ) {
   try {
     const { user_Id } = req.params;
+
     const user = await UserModel.findById(user_Id);
     if (!user) {
       return res.status(404).json({ err: "user doest exists." });

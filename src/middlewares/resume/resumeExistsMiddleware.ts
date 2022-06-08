@@ -10,8 +10,8 @@ export default async function ResumeExists(
   next: NextFunction
 ) {
   try {
-    const id = req.params.id;
-    const resume = await Resume.findById(id);
+    const { resume_Id } = req.params;
+    const resume = await Resume.findById(resume_Id);
 
     if (!resume) {
       return res.status(404).json({ error: "resume does not exist." });

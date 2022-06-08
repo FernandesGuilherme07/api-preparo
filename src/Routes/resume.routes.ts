@@ -14,7 +14,7 @@ import { validate } from "../middlewares/validationMiddleware";
 const ResumeRoutes = Router();
 
 export default ResumeRoutes.post(
-  "/user/:user_id/resume/",
+  "/user/:user_Id/resume/",
   UserIdIsValid,
   ResumeValidation(),
   validate,
@@ -22,14 +22,14 @@ export default ResumeRoutes.post(
 )
   .get("/user/:user_Id/resume/", UserIdIsValid, validate, getAllResumes)
   .get(
-    "/user/:user_Id/resume/:id",
+    "/user/:user_Id/resume/:resume_Id",
     UserIdIsValid,
     ResumeExists,
     validate,
     findResumeById
   )
   .put(
-    "/user/:user_Id/resume/:id",
+    "/user/:user_Id/resume/:resume_Id",
     UserIdIsValid,
     ResumeExists,
     ResumeValidation(),
@@ -37,7 +37,7 @@ export default ResumeRoutes.post(
     updateResume
   )
   .delete(
-    "/user/:user_Id/resume/:id",
+    "/user/:user_Id/resume/:resume_Id",
     UserIdIsValid,
     ResumeExists,
     validate,

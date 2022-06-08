@@ -7,7 +7,7 @@ import {
   removeOpportunitie,
   updateOpportunitie,
 } from "../controllers/OpportunitiesController";
-import OpportunitiesExists from "../middlewares/opportunities/opportunitiesExistsMiddleware";
+import OpportunitiesIdIdValid from "../middlewares/opportunities/opportunitiesIdIsValidMiddleware";
 import { OppornutiesValidation } from "../middlewares/opportunities/opportunitiesValidatorMiddleware";
 import UserIdIsValid from "../middlewares/user/userIdIsValidMiddleware";
 import { validate } from "../middlewares/validationMiddleware";
@@ -15,7 +15,7 @@ import { validate } from "../middlewares/validationMiddleware";
 const OpportunitiesRoutes = Router();
 
 export default OpportunitiesRoutes.post(
-  "/user/:user_id/opportunitie/",
+  "/user/:user_Id/opportunitie/",
   UserIdIsValid,
   OppornutiesValidation(),
   validate,
@@ -29,24 +29,24 @@ export default OpportunitiesRoutes.post(
     getAllOpportunitieByUserId
   )
   .get(
-    "/user/:user_Id/opportunitie/:id",
+    "/user/:user_Id/opportunitie/:opportunitie_Id",
     UserIdIsValid,
-    OpportunitiesExists,
+    OpportunitiesIdIdValid,
     validate,
     findOpportunitieById
   )
   .put(
-    "/user/:user_Id/opportunitie/:id",
+    "/user/:user_Id/opportunitie/:opportunitie_Id",
     UserIdIsValid,
     OppornutiesValidation(),
-    OpportunitiesExists,
+    OpportunitiesIdIdValid,
     validate,
     updateOpportunitie
   )
   .delete(
-    "/user/:user_Id/opportunitie/:id",
+    "/user/:user_Id/opportunitie/:opportunitie_Id",
     UserIdIsValid,
-    OpportunitiesExists,
+    OpportunitiesIdIdValid,
     validate,
     removeOpportunitie
   );

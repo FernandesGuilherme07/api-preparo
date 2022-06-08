@@ -4,6 +4,7 @@ import {
   findCandidacyById,
   getAllCandidacy,
 } from "../controllers/CandidacyController";
+import CandidacyIdIdValid from "../middlewares/candidacy/candidacyExistsMiddleware";
 import { candidacyValidation } from "../middlewares/candidacy/candidacyValidatorMiddleware";
 import opportunitiesIdIsValid from "../middlewares/opportunities/opportunitiesIdIsValidMiddleware";
 import UserIdIsValid from "../middlewares/user/userIdIsValidMiddleware";
@@ -28,9 +29,10 @@ export default candidacyRoutes
     getAllCandidacy
   )
   .get(
-    "/user/:user_Id/opportunitie/:opportunitie_id/candidacy/:id",
+    "/user/:user_Id/opportunitie/:opportunitie_id/candidacy/:candidacy_Id",
     UserIdIsValid,
     opportunitiesIdIsValid,
+    CandidacyIdIdValid,
     validate,
     findCandidacyById
   );
