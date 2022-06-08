@@ -74,7 +74,7 @@ export const CrudModule = (
       return res.status(200).json(data);
     } catch (e: any) {
       Logger.error(`Error: ${e.message}`);
-      return res.status(404).json({ error: "user does not exist." });
+      return res.status(404).json();
     }
   };
 
