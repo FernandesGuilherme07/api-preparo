@@ -7,6 +7,7 @@ import {
   removeOpportunitie,
   updateOpportunitie,
 } from "../controllers/OpportunitiesController";
+import checkToken from "../middlewares/auth/authMiddleware";
 import OpportunitiesIdIdValid from "../middlewares/opportunities/opportunitiesIdIsValidMiddleware";
 import { OppornutiesValidation } from "../middlewares/opportunities/opportunitiesValidatorMiddleware";
 import UserIdIsValid from "../middlewares/user/userIdIsValidMiddleware";
@@ -18,6 +19,7 @@ export default OpportunitiesRoutes.post(
   "/user/:user_Id/opportunitie/",
   UserIdIsValid,
   OppornutiesValidation(),
+  checkToken,
   validate,
   createOpportunitie
 )
@@ -40,6 +42,7 @@ export default OpportunitiesRoutes.post(
     UserIdIsValid,
     OppornutiesValidation(),
     OpportunitiesIdIdValid,
+    checkToken,
     validate,
     updateOpportunitie
   )
@@ -47,6 +50,7 @@ export default OpportunitiesRoutes.post(
     "/user/:user_Id/opportunitie/:opportunitie_Id",
     UserIdIsValid,
     OpportunitiesIdIdValid,
+    checkToken,
     validate,
     removeOpportunitie
   );

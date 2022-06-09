@@ -6,6 +6,7 @@ import {
   removeResume,
   updateResume,
 } from "../controllers/ResumeController";
+import checkToken from "../middlewares/auth/authMiddleware";
 import ResumeExists from "../middlewares/resume/resumeExistsMiddleware";
 import { ResumeValidation } from "../middlewares/resume/resumeValidatorMiddleware";
 import UserIdIsValid from "../middlewares/user/userIdIsValidMiddleware";
@@ -17,6 +18,7 @@ export default ResumeRoutes.post(
   "/user/:user_Id/resume/",
   UserIdIsValid,
   ResumeValidation(),
+  checkToken,
   validate,
   createResume
 )
@@ -33,6 +35,7 @@ export default ResumeRoutes.post(
     UserIdIsValid,
     ResumeExists,
     ResumeValidation(),
+    checkToken,
     validate,
     updateResume
   )
@@ -40,6 +43,7 @@ export default ResumeRoutes.post(
     "/user/:user_Id/resume/:resume_Id",
     UserIdIsValid,
     ResumeExists,
+    checkToken,
     validate,
     removeResume
   );

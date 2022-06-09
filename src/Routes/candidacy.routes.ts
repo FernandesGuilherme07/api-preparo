@@ -4,6 +4,7 @@ import {
   findCandidacyById,
   getAllCandidacy,
 } from "../controllers/CandidacyController";
+import checkToken from "../middlewares/auth/authMiddleware";
 import CandidacyIdIdValid from "../middlewares/candidacy/candidacyExistsMiddleware";
 import { candidacyValidation } from "../middlewares/candidacy/candidacyValidatorMiddleware";
 import opportunitiesIdIsValid from "../middlewares/opportunities/opportunitiesIdIsValidMiddleware";
@@ -18,6 +19,7 @@ export default candidacyRoutes
     UserIdIsValid,
     opportunitiesIdIsValid,
     candidacyValidation(),
+    checkToken,
     validate,
     createCandidacy
   )
@@ -25,6 +27,7 @@ export default candidacyRoutes
     "/user/:user_Id/opportunitie/:opportunitie_id/candidacy",
     UserIdIsValid,
     opportunitiesIdIsValid,
+    checkToken,
     validate,
     getAllCandidacy
   )
@@ -33,6 +36,7 @@ export default candidacyRoutes
     UserIdIsValid,
     opportunitiesIdIsValid,
     CandidacyIdIdValid,
+    checkToken,
     validate,
     findCandidacyById
   );

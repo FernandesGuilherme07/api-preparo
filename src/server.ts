@@ -10,6 +10,5 @@ App.listen(port, async () => {
 
   Logger.info(`Servidor executando na porta ${port}`);
   Logger.info(`Ctrl + click: http://localhost:${port}`);
-  Logger.error(`da logo um jeito nessas rotas`);
-  Logger.warn(`depois começa os testes`);
+  Logger.error(`Criar documentação da api urgente.`);
 });
