@@ -1,21 +1,13 @@
 import { Request, Response } from "express";
 import { UserModel } from "../models/User";
-import jwt from "jsonwebtoken";
-import bcrypt from "bcryptjs";
-
 import authConfig from "../../config/auth";
 import Logger from "../../config/logger";
 
+import jwt from "jsonwebtoken";
+import bcrypt from "bcryptjs";
+
 export const SessionController = async (req: Request, res: Response) => {
   const { email, password } = req.body;
-
-  if (!email) {
-    return res.status(422).json({ msg: "email is mandatory." });
-  }
-
-  if (!password) {
-    return res.status(422).json({ msg: "senha is mandatory." });
-  }
 
   const user = await UserModel.findOne({ email });
 
